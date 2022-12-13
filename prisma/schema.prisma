@@ -9,3 +9,14 @@ datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
+
+model Notification {
+  id          String    @id //PK -> @id
+  recipientId String
+  content     String
+  category    String
+  readAt      DateTime?
+  createdAt   DateTime  @default(now()) //Preenche de forma automatica caso não seja informado a data no momento de salvar no banco
+
+  @@index([recipientId]) //Define o recipientId como indice
+}
