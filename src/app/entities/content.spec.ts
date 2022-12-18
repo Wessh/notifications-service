@@ -1,15 +1,17 @@
 import { Content } from './content';
 
-test('Criar conteudo', () => {
-  const content = new Content('Novo conteudo disponivel!');
+describe('Notification content', () => {
+  it('should be able to create a notification content', () => {
+    const content = new Content('Novo conteudo disponivel!');
 
-  expect(content).toBeTruthy();
-});
+    expect(content).toBeTruthy();
+  });
 
-test('Não seja possivel criar conteudo com menos caracteres que o permitido', () => {
-  expect(() => new Content('Novo')).toThrow();
-});
+  it('should not be able to create a notification content with less than 5 characters', () => {
+    expect(() => new Content('Novo')).toThrow();
+  });
 
-test('Não seja possivel criar conteudo com mais caracteres que o permitido', () => {
-  expect(() => new Content('Novo'.repeat(70))).toThrow();
+  it('should not be able to create a notification content with more than 240 characters', () => {
+    expect(() => new Content('Novo'.repeat(61))).toThrow();
+  });
 });
